@@ -5,7 +5,9 @@ import com.teachmeskills.hibernateintro.model.User;
 import com.teachmeskills.hibernateintro.repository.BaseRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class UserRepositoryImpl implements BaseRepository<User> {
@@ -73,5 +75,18 @@ public class UserRepositoryImpl implements BaseRepository<User> {
         }
 
         return false;
+    }
+
+    @Override
+    public User findByLoginAndPassword(String login, String password) {
+        Session session = ConfigSessionFactory.getSessionFactory().openSession();
+        Query<?> query = session.createQuery("from User where login=:login and password=:password");
+        query.setParameter("login", login);
+        query.setParameter("password", password);
+        try {
+            return (User) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

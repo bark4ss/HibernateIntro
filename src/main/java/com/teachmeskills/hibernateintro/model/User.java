@@ -15,8 +15,15 @@ public class User {
     private String name;
     @Column(name = "last_name")
     private String lastName;
+
     private String address;
     private boolean isMarried;
+
+    private String login;
+    private String password;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;
 
     public User() {}
 
@@ -33,6 +40,22 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -65,6 +88,14 @@ public class User {
 
     public void setMarried(boolean married) {
         isMarried = married;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

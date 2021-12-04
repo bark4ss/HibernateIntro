@@ -8,4 +8,5 @@ public interface BaseService<T> {
     boolean create(T entity);
     T update(T entity);
     boolean deleteById(long id);
+    T findByLoginAndPassword(String login, String password);
 }

@@ -35,4 +35,9 @@ public class UserServiceImpl implements BaseService<User> {
     public boolean deleteById(long id) {
         return repository.deleteById(id);
     }
+
+    @Override
+    public User findByLoginAndPassword(String login, String password) {
+        return repository.findByLoginAndPassword(login, password);
+    }
 }
