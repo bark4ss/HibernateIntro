@@ -14,7 +14,7 @@
 <div class="container">
     <h2 class="text-center">Log in Form:</h2>
     <div class="row justify-content-center">
-        <form class="col-6" action="loginAction" method="post">
+        <form class="col-6 needs-validation" action="loginAction" method="post" novalidate>
             <div class="mb-3">
                 <label for="inputLogin" class="form-label">Login</label>
                 <input type="text" class="form-control" name="login" id="inputLogin" required>
@@ -26,8 +26,17 @@
             <c:if test="${requestScope.invalidLoginOrPassword == true}">
                 <p class="text-start text-danger">Invalid login or password. Please try again.</p>
             </c:if>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary">Log in</button>
+            <p class="mb-5 pb-lg-2">Don't have an account? <a class="text-decoration-none" href="registration">Register here</a></p>
         </form>
+        <script>
+            <%@ include file="/js/validation.js" %>
+        </script>
     </div>
 </div>
 </body>
